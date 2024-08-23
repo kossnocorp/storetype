@@ -8,5 +8,9 @@ export function firestore(options) {
   const databaseId = options?.client?.databaseId || options?.databaseId
   const app = getApp(appName);
 
-  return getFirestore(...[app, databaseId].map(v => !!v))
+  if(databaseId){
+    return getFirestore(app, databaseId)
+  }else{
+    return getFirestore(app)
+  }
 }
